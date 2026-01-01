@@ -44,7 +44,7 @@ export default function Upload() {
         Most Skipped: {actionData.MostSkipped.Name},{" "}
         {actionData.MostSkipped.Skips} times
       </div>
-      <div className="flex flex-row gap-20">
+      <div className="flex flex-row flex-wrap gap-x-20 gap-y-4 mx-4">
         <div className="flex flex-col gap-4">
           <div>50 Top Songs</div>
           <SongTable songs={actionData.TopSongs} />
@@ -54,7 +54,7 @@ export default function Upload() {
           <SongTable songs={actionData.TopArtists} />
         </div>
       </div>
-      <Chart data={actionData.MinsPerDay} width={1000} height={300} />
+      <Chart data={actionData.MinsPerDay} width={300} height={300} />
     </div>
   ) : (
     <div className="flex justify-center items-center bg-green-300 min-h-screen min-w-screen">
