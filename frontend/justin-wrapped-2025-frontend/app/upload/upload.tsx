@@ -36,7 +36,6 @@ export async function action({
 
 export default function Upload() {
   const actionData = useActionData<StatsResponse>();
-  console.log(actionData);
   return actionData ? (
     <div
       className={`flex flex-col items-center justify-center text-white bg-[#041c0d] min-h-screen min-w-screen gap-10`}
@@ -53,12 +52,6 @@ export default function Upload() {
         <div className="flex flex-col gap-4">
           <div>50 Top Artists</div>
           <SongTable songs={actionData.TopArtists} />
-        </div>
-        <div>
-          Top Artists:
-          {actionData.TopArtists.map((i: TopSong) => (
-            <div key={i.Name}>{i.Name}</div>
-          ))}
         </div>
       </div>
       <Chart data={actionData.MinsPerDay} width={1000} height={300} />
