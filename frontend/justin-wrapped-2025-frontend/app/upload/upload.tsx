@@ -1,10 +1,11 @@
 import { useActionData } from "react-router";
 import type { Route } from "../routes/+types/upload";
-import Chart from "~/chart";
+// import Chart from "~/chart";
 import { SongTable } from "~/SongTable";
 
 export type TopSong = {
   Name: string;
+  Artist: string;
   Skips: number;
   Plays: number;
 };
@@ -36,6 +37,7 @@ export async function action({
 
 export default function Upload() {
   const actionData = useActionData<StatsResponse>();
+  console.log(actionData)
   return actionData ? (
     <div
       className={`flex flex-col items-center justify-center text-white bg-[#041c0d] min-h-screen min-w-screen gap-10`}
@@ -54,7 +56,7 @@ export default function Upload() {
           <SongTable songs={actionData.TopArtists} />
         </div>
       </div>
-      <Chart data={actionData.MinsPerDay} width={300} height={300} />
+      {/* <Chart data={actionData.MinsPerDay} width={300} height={300} /> */}
     </div>
   ) : (
     <div className="flex justify-center items-center bg-green-300 min-h-screen min-w-screen">

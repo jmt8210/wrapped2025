@@ -2,7 +2,7 @@ import type { TopSong } from "./upload/upload";
 
 export const SongTable = ({ songs }: { songs: TopSong[] }) => {
   return (
-    <table>
+    <table className="rounded-lg">
       <thead>
         <tr className="text-left">
           <th className="pr-2">Name</th>
@@ -12,7 +12,7 @@ export const SongTable = ({ songs }: { songs: TopSong[] }) => {
       </thead>
       <tbody>
         {songs.map((song: TopSong) => (
-          <tr className="odd:bg-green-800 even:bg-green-900">
+          <tr key={song.Name} className="odd:bg-green-800 even:bg-green-900">
             <td>{song.Name}</td>
             <td>{song.Skips}</td>
             <td>{song.Plays}</td>

@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	YEAR = "2024"
+	YEAR = "2025"
 )
 
 type Track struct {
@@ -49,6 +49,7 @@ type MinutesPerDay struct {
 
 type TopSong struct {
 	Name         string
+	Artist       string
 	Plays        int
 	Skips        int
 	LengthMillis int
@@ -223,6 +224,8 @@ func processTracks(files []fs.File) *Stats {
 	for _, file := range files {
 		data, err := io.ReadAll(file)
 
+		fmt.Println(file)
+
 		if err != nil {
 			fmt.Printf("Error reading file %s: %s\n", file, err.Error())
 		}
@@ -312,6 +315,7 @@ func topSongs(tracks []Track) []TopSong {
 		if _, ok := songMap[track.Name]; !ok {
 			songMap[track.Name] = TopSong{
 				Name:         track.Name,
+				Artist:       track.AlbumArtist,
 				Plays:        1,
 				LengthMillis: track.MillisPlayed,
 				Skips:        skippedAdd,
@@ -320,6 +324,7 @@ func topSongs(tracks []Track) []TopSong {
 			prevSongStats := songMap[track.Name]
 			songMap[track.Name] = TopSong{
 				Name:         track.Name,
+				Artist:       track.AlbumArtist,
 				Plays:        prevSongStats.Plays + 1,
 				LengthMillis: prevSongStats.LengthMillis + track.MillisPlayed,
 				Skips:        prevSongStats.Skips + skippedAdd,
